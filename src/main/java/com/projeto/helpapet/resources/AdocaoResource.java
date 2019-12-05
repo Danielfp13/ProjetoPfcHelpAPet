@@ -42,12 +42,10 @@ public class AdocaoResource {
 		Adocao obj = animalService.fromAdotar(objAnimal);
 		obj = animalService.insert(obj);
 		// pega a URI do novo recurso que foi inserido
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId())
-				.toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}	
 	
-	// alterar
 	@ApiOperation(value = "Confirmar ou cancelar adoção")
 	@PreAuthorize("hasAnyRole('INSTITUICAO')")
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
@@ -63,5 +61,7 @@ public class AdocaoResource {
 		Adocao obj = adocaoService.find(id);
 		return ResponseEntity.ok().body(obj);
 	}
+	
+	
 }
 
